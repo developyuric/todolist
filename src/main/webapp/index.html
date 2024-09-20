@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css2?family=Jacques+Francois+Shadow&family=Mrs+Saint+Delafield&family=Pacifico&family=Playpen+Sans:wght@100..800&family=Satisfy&family=Sofadi+One&display=swap" rel="stylesheet">
+
+
+    <script>
+      function addItem() {
+        // ul 요소 가져옴
+        let list = document.getElementById('todolist');
+        // 입력값을 읽어옴.
+        let todo = document.getElementById('item');
+        // 새로운 li 요소를 생성
+        let listitem = document.createElement('li');
+        // li 요소에 들어갈 닫기 버튼 생성
+        let xbtn = document.createElement('button');
+        // 체크박스 생성
+        let checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.className = 'custom-checkbox me-3'; // 스타일을 위한 클래스 추가
+
+        // .className: jQuery의 addClass
+        listitem.className = 'd-flex align-items-center list-group-item list-group-item-action custom-list-item';
+
+         xbtn.className = 'custom-btn-close  ms-auto'; 
+		
+
+
+        // close 버튼에 이벤트 처리
+        xbtn.onclick = function (e) {
+          // 이벤트가 발생한 li 요소를 구해서 ul 요소에서 제거
+          let pnode = e.target.parentNode; // 버튼의 부모찾기 :li
+          list.removeChild(pnode); // li제거
+        }
+        xbtn.innerText = 'x'; // 또는 xbtn.innerHTML = '&times;'; 
+
+        // li 요소 구성
+        listitem.innerText = todo.value;
+        listitem.prepend(checkbox); // 체크박스를 리스트 아이템 앞에 추가
+        listitem.appendChild(xbtn); // 버튼을 자식으로 추가
+
+        // ul 요소에 li 요소 추가
+        list.appendChild(listitem);
+
+        // 입력칸 비우기 및 포커스 이동
+        todo.value = '';
+        todo.focus(); // 다시입력할수있게
+      }
+    </script>
+
+    <style>
+	body{
+		margin-top:-60px;
+		}
+		.whole{
+		position:relative;
+		}
+		
+	.background img{
+		object-fit:contain;
+	    position:absolute;
+	    top:0;
+	    left:0;
+        z-index: -1;
+        width:1900px;
+	}
+	.container{
+		position:absolute;
+		top:700px;
+		left:1100px;
+		width:500px;
+	}
+
+    h1 {
+  		font-family: "Satisfy", cursive;
+        font-weight: 200 !important;
+        font-size: 70px;
+        text-align:center;
+        color:#AA4703;
+    }
+
+    input, button {
+        font-family: "Playpen Sans", cursive;
+        font-size: 25px;
+        color: #7C3606 !important;
+        border-radius:0px !important;
+    }
+    
+    button:hover{
+    	background-color:#A97856 !important;
+    	color:white !important;
+    	border-radius:50% !important;
+    }
+   
+	.custom-list-item {
+	    font-family: "Playpen Sans", cursive;
+		border-color:#EAA14B;
+	    background-color: #F5E6D4; 
+	    color: #7C3606; 
+	}
+	input:focus {
+	    border-color: #EAA14B !important; 
+	    box-shadow: 0 0 20px rgba(234, 161, 75, 0.5) !important; 
+	}
+	input::placeholder {
+	    color: #EAA14B !important; 
+	    opacity: 0.5; 
+	}
+	
+
+      /* Custom checkbox styling */
+      .custom-checkbox {
+        width: 18px;
+        height: 18px;
+        appearance: none;
+        background-color: #FAC00F; 
+        border: 1px solid #EAA14B;
+        border-radius: 50%;
+        cursor: pointer;
+        outline: none;
+        position: relative;
+      }
+
+      .custom-checkbox:checked {
+		background-color: #ffffff;
+		border-color: #EAA14B;
+		background-image: none;
+      }
+
+      .custom-checkbox:checked::before {
+	      content: '';
+	      position: absolute;
+	      top: -20px;
+	      left: -10px;
+	      width: 50px;
+	      height: 50px;
+		  background-image: url('img/check.png');
+	      background-size: 80%;
+	      filter: invert(1) sepia(1) saturate(500%) hue-rotate(-50deg);	/*change check-imgage from green to red*/
+	      background-position: center;
+	      background-repeat: no-repeat;
+	      transform: scale(1.5); /* Makes the checkmark bigger */
+	      z-index: 1;
+      }
+	   .custom-btn-close {
+		    width: 23px; /* 원하는 너비 */
+		    height: -12px; /* 원하는 높이 */
+		    font-size: 1.2rem; /* 원하는 글자 크기 */
+		    background-color: transparent;/*  투명 배경  */
+		    border: none; /* 경계선 없음 */
+		    outline:none !important;
+		}
+    </style>
+
+    <title>To Do App</title>
+  </head>
+
+
+<!-- bg-warning <!-- shadow mx-auto mt-5 p-5 w-75 -->-->
+  <body>
+  <div class="whole">
+  
+	  <div class="background"><img src="img/note7.jpg" alt="background-image"></div>
+	  <div class="container">
+	    <h1>To Do List</h1>
+	    <hr>
+	    <div class="input-group">
+	      <input id="item" class="form-control" type="text" placeholder="Enter a task">
+	      <button type="button" class="btn btn-warning" onclick="addItem()">Add task</button>
+	    </div>
+	    <hr>
+	    <ul id="todolist" class="list-group"></ul>
+	  </div>
+	  </div>
+  </body>
+
+</html>
